@@ -1,1 +1,1 @@
-web: gunicorn buckets:app
+web: gunicorn __init__:app
