@@ -1,0 +1,36 @@
+<!-- Delete All Modal -->
+<div class="modal fade" id="deleteallModal" tabindex="-1" role="dialog" aria-labelledby="deleteAllModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="deleteAllModalLabel">Delete All</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">Are you sure? Pressing delete all will delete all entries from the table.</div>
+        <div class="modal-footer">
+            <form action="{{ url_for('routes.deleteall') }}" method="POST">
+               <button type="submit" class="btn btn-primary" id="modal-deleteall", value="Delete All">Delete All</button> 
+              </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+        
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+    $('#modal-delete').click(function(){
+        // Perform the action after modal confirm button is clicked.
+    
+        $('#form-submit').click(); // submitting the form
+    });
+    </script>
+{% if form.errors %}
+<script>
+$('#deleteModal').modal('show');
+
+</script>
+
+{% endif %}

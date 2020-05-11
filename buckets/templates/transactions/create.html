@@ -1,0 +1,67 @@
+<!-- Add Expense Modal -->
+<div class="modal fade" id="AddNewModal" tabindex="-1" role="dialog" aria-labelledby="AddNewModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="AddNewModalLabel">Log Transaction</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <form action="{{ url_for('transaction.create_trans', continue_flag=continue_flag) }}" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.expense.label }}<br>
+                {{ form.expense }}<br>
+                {% for error in form.expense.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.amount.label }}<br>
+                {{ form.amount }}<br>
+                {% for error in form.amount.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.note.label }}<br>
+                {{ form.note }}<br>
+                {% for error in form.note.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.date.label }}<br>
+                {{ form.date(type="date") }}
+                {% for error in form.date.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+                      
+            <p>{{ form.submit(hidden='true', id='form-submit') }}</p>
+        </form>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+        <button type="submit" class="btn btn-primary" id="modal-create">Log Transaction</button>
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+    $('#modal-create').click(function(){
+        // Perform the action after modal confirm button is clicked.
+    
+        $('#form-submit').click(); // submitting the form
+    });
+</script>
+{% if form.errors %}
+<script>
+$('#AddNewModal').modal('show');
+
+</script>
+
+{% endif %}

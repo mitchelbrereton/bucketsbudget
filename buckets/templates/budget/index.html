@@ -1,0 +1,54 @@
+
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1 align="center">{% block title %}Budget{% endblock %}</h1>  
+   
+{% endblock %}  
+
+{% block content %}
+<div>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddNewModal">Add New Expense</button>
+  {% include "/budget/create.html" %}
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#payModal">Pay Week</button>
+  {% include "/budget/payday.html" %}
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteallModal">Delete All</button>
+  {% include "/budget/deleteall.html" %}
+</div>
+
+<table id="mainTable" class="table table-hover" style="width:100%;margin:0px auto" data-toggle="table" data-search="true" data-show-toggle="true" data-show-columns="true"  data-show-export="true">
+  <thead>
+    <tr>
+      {%- for column in columns %}
+      <th data-sortable = "{{ column.sortable }}">{{ column.name }}</th>
+      {%- endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      {% for field in fields %}
+        <td>{{ row[field] }}</td>
+      {% endfor %}
+      <td><button type="button" class="btn btn-info btn-sm m-1" data-toggle="modal" data-target="#updateModal{{ row.id }}"><i class="fas fa-edit"></i></button></td>
+      <td><button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal{{ row.id }}"><i class="fas fa-trash-alt"></i></button></td>
+      {% include "budget/update.html" %}
+      {% if row_id %}
+      {% if form.errors %}
+        <script>
+        $("#updateModal{{ row_id }}").modal('show');
+        </script>
+      {% endif %}
+    {% endif %}
+    <!-- Delete Modal Button-->
+    {% include "budget/delete.html" %}
+    {% if not loop.last %}
+    <h1>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

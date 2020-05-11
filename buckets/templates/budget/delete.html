@@ -1,0 +1,35 @@
+<!-- Delete Expense Modal -->
+<div class="modal fade" id="deleteModal{{ row.id }}" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Expense</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-footer">
+            <form action="{{ url_for('routes.delete_expense', expense_id=row.id) }}" method="POST">
+               <button type="submit" class="btn btn-primary" id="modal-delete", value="Delete">Delete Expense</button> 
+              </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+        
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+    $('#modal-delete').click(function(){
+        // Perform the action after modal confirm button is clicked.
+    
+        $('#form-submit').click(); // submitting the form
+    });
+    </script>
+{% if form.errors %}
+<script>
+$('#deleteModal').modal('show');
+
+</script>
+
+{% endif %}

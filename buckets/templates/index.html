@@ -1,0 +1,14 @@
+
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Posts{% endblock %}</h1>
+
+{% endblock %}
+
+{% block content %}
+<body>
+    <h1>Hello! {{ current_user.username }}</h1>
+    This is where the homepage details will go
+</body>
+{% endblock %}
