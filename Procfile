@@ -1,1 +1,1 @@
-web: gunicorn --chdir buckets __init__:app
+web: gunicorn --chdir buckets __init__:create_app()
