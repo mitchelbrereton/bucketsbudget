@@ -1,1 +1,1 @@
-web: gunicorn --chdir my_folder buckets __init__:app
+web: gunicorn --chdir buckets __init__:app
