@@ -1,1 +1,1 @@
-web: gunicorn --chdir buckets __init__:create_app(test_config=None)
+web: gunicorn wsgi:app
