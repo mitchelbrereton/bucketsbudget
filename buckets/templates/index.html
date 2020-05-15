@@ -2,17 +2,16 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Posts{% endblock %}</h1>
-
+  <h1 class="h2">{% block title %}Posts{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-<body>
-	<br>
-    <h1>Hello! {{ current_user.username }}</h1>
-    <br>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1">
+    <h1 class="h2">Hello! {{ current_user.username }}</h1>
+</div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 Welcome to the Buckets Budget App.
 
-Please use the Navigation bar to begin to create your budget and log your transactions.
-</body>
+Please use the Menu to begin to create your budget and log your transactions.
+</div>
 {% endblock %}

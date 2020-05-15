@@ -2,9 +2,8 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>{% block title %} Buckets {% endblock %}</title>
 		<meta name="description" content="A Budget App to help manage your money" />
 		<meta name="keywords" content="budget, app, finance" />
@@ -29,14 +28,14 @@
 		<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
 			<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Buckets</a>
 			<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-			  <span class="navbar-toggler-icon"></span>
+				<span class="navbar-toggler-icon"></span>
 			</button>
 	    	<ul class="navbar-nav px-3">
 				<li class="nav-item dropdown">
-				  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Account
-				  </a>
-				  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Account
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					{% if current_user.is_authenticated %}
 						<a class="dropdown-item">{{ current_user.username }}</a>
 						<div class="dropdown-divider"></div>
@@ -45,86 +44,82 @@
 					  	<a class="dropdown-item" href="{{ url_for('auth.login') }}">Log In</a>
 						<a class="dropdown-item" href="{{ url_for('auth.register') }}">Register</a>
 			  		{% endif %}
-				  </div>
+					</div>
 				</li>
-				
-			  </ul>
-			  </div>
-		  </nav>
-		<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="sidebar-sticky pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">
-              <span data-feather="home"></span>
-              Dashboard <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('routes.disp_budget', username=current_user.username) }}">
-              <span data-feather="file"></span>
-              Budget
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('transaction.disp_trans', username=current_user.username) }}">
-              <span data-feather="shopping-cart"></span>
-              Transactions
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users"></span>
-              Expense Share
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="bar-chart-2"></span>
-              Reports
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="layers"></span>
-              Integrations
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>	
 			</ul>
-		<section class="content">
-		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-      	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-			<header>
-				{% block header %}{% endblock %}
-			</header>
-				{% for message in get_flashed_messages() %}
-					  <div class="flash">{{ message }}</div>
-				{% endfor %}
-				{% block content %}{% endblock %}
-			</section>
-		
-		<script>$('#uform').click(function(event) {
-			event.preventDefault();
-			$.post(url, data=$('#editForm').serialize(), function(data) {
-			  if (data.status == 'ok') {
-				$('#editModal').modal('hide');
-				location.reload();
-			  }
-			  else {
-				$('#editModal .modal-content').html(data);
-			  }
-			});
-		  })
-		</script>
-		<!-- Load in Jquery -->
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-        <script src="../static/js/dashboard.js"></script>
-    </body>
+		</nav>
+	<div class="container-fluid">
+	 	<div class="row">
+		    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+		      	<div class="sidebar-sticky pt-3">
+			        <ul class="nav flex-column">
+			          <li class="nav-item">
+			            <a class="nav-link active" href="#">
+			              <span data-feather="home"></span>
+			              Dashboard <span class="sr-only">(current)</span>
+			            </a>
+			          </li>
+			          <li class="nav-item">
+			            <a class="nav-link" href="{{ url_for('routes.disp_budget', username=current_user.username) }}">
+			              <span data-feather="file"></span>
+			              Budget
+			            </a>
+			          </li>
+			          <li class="nav-item">
+			            <a class="nav-link" href="{{ url_for('transaction.disp_trans', username=current_user.username) }}">
+			              <span data-feather="shopping-cart"></span>
+			              Transactions
+			            </a>
+			          </li>
+			          <li class="nav-item">
+			            <a class="nav-link" href="#">
+			              <span data-feather="users"></span>
+			              Expense Share
+			            </a>
+			          </li>
+			          <li class="nav-item">
+			            <a class="nav-link" href="#">
+			              <span data-feather="bar-chart-2"></span>
+			              Reports
+			            </a>
+			          </li>
+			          <li class="nav-item">
+			            <a class="nav-link" href="#">
+			              <span data-feather="layers"></span>
+			              Integrations
+			            </a>
+			          </li>
+			        </ul>
+	  			</div>
+	    	</nav>	
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+		      	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					{% block header %}{% endblock %}
+				</div>
+					{% for message in get_flashed_messages() %}
+						<div class="flash">{{ message }}</div>
+					{% endfor %}
+					{% block content %}{% endblock %}
+			</main>
+		</div>
+	</div>
+	<script>$('#uform').click(function(event) {
+		event.preventDefault();
+		$.post(url, data=$('#editForm').serialize(), function(data) {
+		  if (data.status == 'ok') {
+			$('#editModal').modal('hide');
+			location.reload();
+		  }
+		  else {
+			$('#editModal .modal-content').html(data);
+		  }
+		});
+	  })
+	</script>
+	<!-- Load in Jquery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+	<script src="../static/js/dashboard.js"></script>
+	</body>
 </html>
