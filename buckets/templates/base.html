@@ -97,16 +97,16 @@
     </nav>	
 			</ul>
 		<section class="content">
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-		<header>
-			{% block header %}{% endblock %}
-		</header>
-			{% for message in get_flashed_messages() %}
-				  <div class="flash">{{ message }}</div>
-			{% endfor %}
-			{% block content %}{% endblock %}
-		</section>
+		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+			<header>
+				{% block header %}{% endblock %}
+			</header>
+				{% for message in get_flashed_messages() %}
+					  <div class="flash">{{ message }}</div>
+				{% endfor %}
+				{% block content %}{% endblock %}
+			</section>
 		
 		<script>$('#uform').click(function(event) {
 			event.preventDefault();
@@ -119,7 +119,8 @@
 				$('#editModal .modal-content').html(data);
 			  }
 			});
-		  })</script>
+		  })
+		</script>
 		<!-- Load in Jquery -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
