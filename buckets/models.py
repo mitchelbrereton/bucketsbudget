@@ -30,10 +30,12 @@ class Budget(db.Model):
     expense = db.Column(db.String(140))
     amount = db.Column(db.Float)
     last_paid = db.Column(db.DateTime, index=True)
+    next_due = db.Column(db.DateTime)
     expense_cycle = db.Column(db.String)
     in_flows = db.Column(db.Float)
     out_flows = db.Column(db.Float)
     available = db.Column(db.Float)
+    est_min = db.Column(db.Float)
     username = db.Column(db.String(64), db.ForeignKey('user.username'))
     # Setup the relationship to the Transaction table
     transactions = db.relationship('Transactions', lazy='dynamic')

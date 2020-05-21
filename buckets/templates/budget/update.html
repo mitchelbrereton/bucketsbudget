@@ -34,7 +34,7 @@
             </p>
             <p>
                 {{ form.last_paid.label }}<br>
-                {{ form.last_paid(type="date") }}
+                {{ form.last_paid(type="date", value=row.last_paid) }}
                 {% for error in form.last_paid.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
@@ -42,35 +42,34 @@
             <p>
                 <label class="mr-sm-2" for="inlineFormCustomSelect">{{ form.cycle.label }}</label>
                 <br>
-                {{ form.cycle }}
+
+                {{ form.cycle(id="pay_cycle") }}
                 <br>
                 {% for error in form.cycle.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
-            
-            <p>{{ form.submit }}</p>
+                {{ form.nxtlst_select(hidden='true') }}
+
+            <p>{{ form.submit(hidden='true', id='form-update') }}</p>
         </form>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         
-        <button type="submit" class="btn btn-primary" id="modal-update">Add Expense</button>
+        <button type="submit" class="btn btn-primary" id="modal-update{{ row.id }}">Update Expense</button>
         </div>
     </div>
     </div>
 </div>
+
 <script>
-    $('#modal-update').click(function(){
+    $('#modal-update{{ row.id }}').click(function(){
         // Perform the action after modal confirm button is clicked.
     
-        $('#form-submit').click(); // submitting the form
+        $('#form-update').click(); // submitting the form
     });
-    </script>
-{% if form.errors %}
-<script>
-$('#updateModal').modal('show');
-
 </script>
+{% if form.errors %}
 
 {% endif %}

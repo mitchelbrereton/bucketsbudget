@@ -1,47 +1,47 @@
 <!-- Add Expense Modal -->
-<div class="modal fade" id="AddNewModal" tabindex="-1" role="dialog" aria-labelledby="AddNewModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddTransactModal{{ row.id }}" tabindex="-1" role="dialog" aria-labelledby="AddTransactModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="AddNewModalLabel">Log Transaction</h5>
+        <h5 class="modal-title" id="AddTransactModalLabel">Log Transaction</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         </div>
         <div class="modal-body">
-        <form action="{{ url_for('transaction.create_trans', transact_flag=transact_flag) }}" method="post">
-            {{ form.hidden_tag() }}
+        <form action="{{ url_for('transaction.create_trans', transact_flag=transact_flag ) }}" method="post">
+            {{ form2.hidden_tag() }}
             <p>
-                {{ form.expense.label }}<br>
-                {{ form.expense }}<br>
-                {% for error in form.expense.errors %}
+                {{ form2.expense.label }}<br>
+                {{ form2.expense(value=row.expense) }}<br>
+                {% for error in form2.expense.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
-                {{ form.amount.label }}<br>
-                {{ form.amount }}<br>
-                {% for error in form.amount.errors %}
+                {{ form2.amount.label }}<br>
+                {{ form2.amount }}<br>
+                {% for error in form2.amount.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
-                {{ form.note.label }}<br>
-                {{ form.note }}<br>
-                {% for error in form.note.errors %}
+                {{ form2.note.label }}<br>
+                {{ form2.note }}<br>
+                {% for error in form2.note.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
-                {{ form.date.label }}<br>
-                {{ form.date(type="date") }}
-                {% for error in form.date.errors %}
+                {{ form2.date.label }}<br>
+                {{ form2.date(type="date") }}
+                {% for error in form2.date.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
                       
-            <p>{{ form.submit(hidden='true', id='form-submit') }}</p>
-        </form>
+            <p>{{ form2.submit(hidden='true', id='form2-submit') }}</p>
+        </form2>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -55,12 +55,12 @@
     $('#modal-create').click(function(){
         // Perform the action after modal confirm button is clicked.
     
-        $('#form-submit').click(); // submitting the form
+        $('#form2-submit').click(); // submitting the form
     });
 </script>
-{% if form.errors %}
+{% if form2.errors %}
 <script>
-$('#AddNewModal').modal('show');
+$('#AddTransactModal').modal('show');
 
 </script>
 

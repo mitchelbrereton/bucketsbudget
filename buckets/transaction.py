@@ -9,10 +9,10 @@ from flask_login import current_user, login_required
 
 bp = Blueprint("transaction", __name__)
 
-@bp.route("/transaction/", defaults={'continue_flag': 'No' }, methods=['GET', 'POST'])
-@bp.route("/transaction/<string:continue_flag>", methods=['GET', 'POST'])
+@bp.route("/transaction/", defaults={'transact_flag': 'No' }, methods=['GET', 'POST'])
+@bp.route("/transaction/<string:transact_flag>", methods=['GET', 'POST'])
 @login_required
-def disp_trans(continue_flag):
+def disp_trans(transact_flag):
     form = TransactForm()
     transactions = Transactions.query.filter_by(username=current_user.username).all()
     displayfields = ['expense', 'amount', 'date', 'note']
@@ -32,7 +32,7 @@ def disp_trans(continue_flag):
         rows.append(transdict)
     #dont forget to update routes below when making new ones!
     return render_template('/transactions/index.html', title='Transactions', form=form, columns=columns, rows=rows, fields=displayfields,
-        create_route='bp.create_trans', update_route='bp.update_transact',self_route='bp.disp_trans', buttonName=buttonName, continue_flag=continue_flag)
+        create_route='bp.create_trans', update_route='bp.update_transact',self_route='bp.disp_trans', buttonName=buttonName, transact_flag=transact_flag)
 
 
 @login_required
@@ -45,9 +45,9 @@ def delete_trasnaction(tranact_id):
     flash('Your transaction has been deleted!', 'success')
     return redirect(url_for('transaction.disp_trans'))
 
-@bp.route("/transactions/create/<string:continue_flag>", methods=['GET', 'POST'])
+@bp.route("/transactions/create/<string:transact_flag>", methods=['GET', 'POST'])
 @login_required
-def create_trans(continue_flag):
+def create_trans(transact_flag):
     form = TransactForm()
     
     today = date.today()
@@ -66,8 +66,8 @@ def create_trans(continue_flag):
         db.session.add(Transaction)
         db.session.commit() 
         flash('You have logged a transaction', 'success')
-        return redirect(url_for('transaction.disp_trans', username=current_user.username, continue_flag=continue_flag))
-    return redirect(url_for('transaction.disp_trans', username=current_user.username, continue_flag=continue_flag))
+        return redirect(url_for('transaction.disp_trans', username=current_user.username, transact_flag=transact_flag))
+    return redirect(url_for('transaction.disp_trans', username=current_user.username, transact_flag=transact_flag))
 
 @bp.route("/transactions/update/<int:transact_id>", methods=['GET', 'POST'])
 @login_required

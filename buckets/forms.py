@@ -33,8 +33,9 @@ class ExpenseForm(FlaskForm):
     group = StringField('group', validators=[DataRequired()])
     expense = StringField('expense', validators=[DataRequired()])
     amount = IntegerField('amount', validators=[DataRequired()])
-    last_paid = DateField('Last Paid', validators=[DataRequired()]) #this should be a calender picker
+    last_paid = DateField('Last Paid', validators=[DataRequired()])
     cycle = SelectField('Expense Cycle', choices=[('Weekly', 'Weekly'),('Fortnightly','Fortnightly'),('Monthly','Monthly'),('Yearly','Yearly')])
+    nxtlst_select = SelectField('Next/Last Date Select', choices=[('lp', 'Last Paid'),('nd','Next Due')])
     submit = SubmitField('Add Expense')
 
 def getExpenseCat():

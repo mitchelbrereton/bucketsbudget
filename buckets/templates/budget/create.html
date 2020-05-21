@@ -33,7 +33,14 @@
                 {% endfor %}
             </p>
             <p>
-                {{ form.last_paid.label }}<br>
+                <br>
+                {{ form.nxtlst_select }}
+                <br>
+                {% for error in form.nxtlst_select.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
                 {{ form.last_paid(type="date") }}
                 {% for error in form.last_paid.errors %}
                 <span style="color: red;">[{{ error }}]</span>
