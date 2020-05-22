@@ -13,24 +13,29 @@
             {{ form.hidden_tag() }}
             <p>
                 {{ form.group.label }}<br>
-                {{ form.group(size=32, value=row.group) }}<br>
+                {{ form.group(value=row.group) }}<br>
                 {% for error in form.group.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
                 {{ form.expense.label }}<br>
-                {{ form.expense(size=32, value=row.expense) }}<br>
+                {{ form.expense(value=row.expense) }}<br>
                 {% for error in form.expense.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
                 {{ form.amount.label }}<br>
-                {{ form.amount(size=32, value=row.amount) }}<br>
+                {{ form.amount(value=row.amount) }}<br>
                 {% for error in form.amount.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
+            </p>
+            <p>
+                <label for="avail">Available</label><br>
+                <input id="avail" name="avail" required="" type="text" value="{{ row.available}}">
+
             </p>
             <p>
                 {{ form.last_paid.label }}<br>

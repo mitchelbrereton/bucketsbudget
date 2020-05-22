@@ -157,8 +157,9 @@ def update_expense(expense_id):
         amount = form.amount.data
         cycle = form.cycle.data
         expense.group = form.group.data
-        expense.expense = form.expense.data
         expense.amount = amount
+        expense.expense = form.expense.data
+        expense.available = request.form['avail']
         expense.last_paid = last_paid
         expense.expense_cycle = cycle
         #convert the string selection into a value used in the formula to calculate the split cost per week
@@ -171,6 +172,7 @@ def update_expense(expense_id):
         elif cycle == 'Yearly':
             value = 52
         datedif = today-last_paid
+        #need error checking to prevent dates greater than today
         expense.est_min = amount/value*int((datedif.days)/7)
         db.session.commit()
         flash('Your expense has been updated!', 'success')
