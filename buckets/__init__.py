@@ -26,10 +26,12 @@ def create_app(test_config=None):
     from . import auth
     from . import models
     from . import transaction
+    from . import dashboard
     #register blueprints
     app.register_blueprint(routes.bp)
     app.register_blueprint(auth.bp)
     app.register_blueprint(transaction.bp)
+    app.register_blueprint(dashboard.bp)
     #set index page
     #app.add_url_rule("/", endpoint="index")
 

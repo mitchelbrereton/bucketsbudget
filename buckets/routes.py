@@ -16,6 +16,7 @@ bp = Blueprint("routes", __name__)
 def index():
 
     return render_template('index.html', title='Home')
+
 # the below routes are all dealing with the main budget display and creating and editing the budget expenses to track
 
 @bp.route("/budget/", defaults={'continue_flag': 'No' }, methods=['GET', 'POST'])

@@ -10,7 +10,9 @@
 
 <div>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddNewModal">Add New Expense</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddNewModal"><svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
+</svg>  Add New Expense</button>
   {% include "/budget/create.html" %}
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#payModal">Pay Week</button>
   {% include "/budget/payday.html" %}
@@ -21,7 +23,7 @@
     {{ form.errors }}
 {% endif %}
 <div class="table-responsive">
-  <table id="mainTable" class="table table-striped table-sm" style="width:100%;margin:0px auto" data-toggle="table" data-search="true" data-show-toggle="true" data-show-columns="true"  data-show-export="true">
+  <table id="mainTable" class="table table-striped table-sm" style="width:100%;margin:0px auto" data-toggle="table"  data-show-export="true" data-group-by="true" data-group-by-field="Group">
     <thead>
       <tr>
         {%- for column in columns %}
@@ -53,5 +55,9 @@
     </tbody>
   </table>
 </div>
-
+<script>
+  $(function() {
+    $('#mainTable').bootstrapTable()
+  })
+</script>
 {% endblock %}
